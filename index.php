@@ -74,12 +74,13 @@
         <div class="container" id="cta">
           <h1 style="color:red;">RFI News</h1>
           <p class="lead text-muted">Newspaper from the data stream of Radio France Internationale (RFI), the popular radio station.
-            <br/> Made with love ❤ by <a href='https://github.com/heronational' target="_blank"> Daniel Uokof </a></p>
+            <br/> Made with love <span class="heart">❤</span> by <a href='https://github.com/heronational' target="_blank"> Daniel Uokof </a></p>
           <p>
             <p class="print-title">Journal du <?php echo date("j/m/o");?> </p>
             <div class="btn btn-group">
-              <a href="https://github.com/heronational/Rss-data-feed-php" class="btn btn-info my-2">Suivre le projet</a>
-              <a href="https://www.rfi.fr/fr/rss" class="btn btn-warning my-2">Voir à la source</a>
+              <a href="https://github.com/heronational/Rss-data-feed-php" class="btn btn-info my-2"><span class="lnr lnr-laptop"></span>&nbsp;&nbsp;&nbsp;&nbsp;Suivre le projet</a>
+              <a href="https://www.rfi.fr/fr/rss" class="btn btn-warning my-2"><span class="lnr lnr-cloud"></span>&nbsp;&nbsp;&nbsp;&nbsp;Voir à la source</a>
+              <a href="javascript:window.print()" class="btn btn-secondary my-2"><span class="lnr lnr-printer"></span>&nbsp;&nbsp;&nbsp;&nbsp;Imprimer</a>
             </div>
             <br>
             <style>
@@ -187,6 +188,21 @@
     </main>
 
     <style>
+      .heart {
+        animation: beat 1s linear infinite;
+        width: 30px;
+        max-width: 30px;
+        min-width: 30px;
+      }
+    
+    @keyframes beat {
+        0% {
+          font-size: 20px;
+        }
+        50% {
+          font-size: 18px;
+        }
+      }
       .back-to-top{
         visibility: hidden;
         position: fixed;
@@ -195,29 +211,27 @@
         background-color: rgba(255, 0, 0, 0.233);
         padding:15px;
         border-radius: 10%;
-        border: 1px solid rgba(255, 255, 255, 0.342);
         font-weight: bold;
-        transition: 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
+        transition: 700ms cubic-bezier(0.075, 0.82, 0.165, 1);
         color:rgb(245, 209, 166);
         font-size: 20px;
       }
       .back-to-top:hover{
-        transition: 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
+        transition: 700ms cubic-bezier(0.075, 0.82, 0.165, 1);
+        box-shadow: 0px 0px 10px 5px rgba(245, 245, 245, 0.548);
         background-color: rgba(255, 0, 0, 0.589);
       }
     </style>
     <span class="lnr lnr-chevron-up back-to-top" href="#"></span>
 
-    <footer class="fixed-bottom: bg-dark text-muted">
+    <footer class="fixed-bottom: bg-dark text-center text-muted">
       <div class="container">
-        <p class="float-right">
-        </p>
-        <p class='pt-2'>Made with love ❤ by  <a href="https://github.com/heronational/">Daniel Uokof.</a> Contact me on <a href="https://t.me/heronational">Telegram</a></p>
+        <p class='pt-2'>Made with love <span class="hearts">❤</span> by  <a href="https://github.com/heronational/">Daniel Uokof.</a> Contact me on <a href="https://t.me/heronational">Telegram</a></p>
       </div>
     </footer>
     <style>
       @media print {
-        .btn,.lead,.back-to-top,.lang{
+        .btn,.lead,.back-to-top,.lang, .down{
           display: none;
         }
         
