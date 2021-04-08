@@ -26,7 +26,7 @@
     }else{
         $url="https://www.rfi.fr/fr/rss";
     }
-    $url="file.xml";
+    //$url="file.xml";
     $content=file_get_contents($url);
     $xml=simplexml_load_file($url);
 
