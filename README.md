@@ -6,4 +6,4 @@ _____________________________________________________
 Comment gérer un flux rss à partir d'une API REST avec PHP
 
 
-## Fait avec ❤ par [Daniel Uokof]("https://github.com/HeroNational")
+## Fait avec ❤ par (Daniel Uokof)[https://github.com/HeroNational]
