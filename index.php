@@ -1,5 +1,6 @@
 <?php 
   include("./controller.php");
+  if(!is_connected()) die("connexion failed");  
 ?>
 <!doctype html>
 <html lang="en">
@@ -15,22 +16,9 @@
     <link rel="stylesheet" href="./assets/font/style.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
     <?php
-      $content=@json_decode(@file_get_contents("http://extreme-ip-lookup.com/json/"));
-
-      $now=time();
-
-      /* $longitude = 52.27026;
-      $latitude  = -1.89188; */
-      $longitude =  $content->lon;
-      $latitude  =  $content->lat;
       
-      $sun    = date_sun_info ( $now, $longitude, $latitude);
-      $light  = $sun['civil_twilight_begin'];
-      $dark   = $sun['civil_twilight_end'];
-      
-      if (($now > $light && $now < $dark)) {
+      if (Is_daytime()) {
         
-        $value="It's daytime";
       ?>
         <link href="./assets/dist/css/bootstrap.📕.css" rel="stylesheet">
       <?php
@@ -80,7 +68,7 @@
             to bottom,
             rgba(0,0,0, 0),
             rgba(0,0,0, 100)
-          ),url("<?php echo $wallpaper; ?>"), linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4));
+          ),url("<?php echo get_wallpaper(); ?>"), linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4));
       </style>
       <section class="jumbotron text-center mt-0" id="bing-bg">
         <div class="container" id="cta">
@@ -167,6 +155,7 @@
 
           <div class="row">
             <?php 
+                $xml=get_data();
                 foreach($xml->channel->item as $item){
             ?>
             <div class="col-md-4">
