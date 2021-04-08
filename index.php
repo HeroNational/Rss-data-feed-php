@@ -73,13 +73,20 @@
       <section class="jumbotron text-center mt-0" id="bing-bg">
         <div class="container" id="cta">
           <h1 style="color:red;">RFI News</h1>
-          <p class="lead text-muted">Newspaper from the data stream of Radio France Internationale (RFI), the popular radio station.
+          <p class="lead text">Newspaper from the data stream of Radio France Internationale (RFI), the popular radio station.
             <br/> Made with love <span class="heart">❤</span> by <a href='https://github.com/heronational' target="_blank"> Daniel Uokof </a></p>
           <p>
             <p class="print-title">Journal du <?php echo date("j/m/o");?> </p>
             <div class="btn btn-group">
               <a href="https://github.com/heronational/Rss-data-feed-php" class="btn btn-info my-2"><span class="lnr lnr-laptop"></span>&nbsp;&nbsp;&nbsp;&nbsp;Suivre le projet</a>
-              <a href="https://www.rfi.fr/fr/rss" class="btn btn-warning my-2"><span class="lnr lnr-cloud"></span>&nbsp;&nbsp;&nbsp;&nbsp;Voir à la source</a>
+              <a href="<?php 
+              if(isset($_GET["lang"])){
+                if($_GET["lang"]=="fr"){
+                  echo "https://www.rfi.fr/fr/rss";
+                }else{
+                  echo "https://www.rfi.fr/en/rss";
+                }
+              } ?>" class="btn btn-warning my-2"><span class="lnr lnr-cloud"></span>&nbsp;&nbsp;&nbsp;&nbsp;Voir à la source</a>
               <a href="javascript:window.print()" class="btn btn-secondary my-2"><span class="lnr lnr-printer"></span>&nbsp;&nbsp;&nbsp;&nbsp;Imprimer</a>
             </div>
             <br>
