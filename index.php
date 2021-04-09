@@ -1,6 +1,6 @@
 <?php 
   include("./controller.php");
-  if(!is_connected()) die("connexion failed");  
+  if(!is_connected()) die("Internet connexion failed. For elements to be loaded, you need to have an internet connexion.");  
 ?>
 <!doctype html>
 <html lang="en">
@@ -10,11 +10,12 @@
     <meta name="description" content="">
     <meta name="author" content="Daniel Fokou, Hero National, Hamed Norach, Megali Freshner and Tarkovski Woo">
     <meta name="generator" content="Jekyll v4.1.1">
-    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/52329673?v=4" type="image/x-icon">
+    <link rel="shortcut icon" href="https/://avatars.githubusercontent.com/u/52329673?v=4" type="image/x-icon">
     <title>News Feed</title>
 
     <link rel="stylesheet" href="./assets/font/style.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
+    <!-- Bootstrap core CSS -->
     <?php
       
       if (Is_daytime()) {
@@ -32,7 +33,7 @@
       }
     ?>
 
-    <!-- Bootstrap core CSS -->
+    <link href="./assets/dist/css/fakescroll.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -52,8 +53,6 @@
         }
       }
     </style>
-    <!-- Custom styles for this template -->
-    <link href="album.css" rel="stylesheet">
   </head>
   <body>
     
@@ -68,12 +67,12 @@
             to bottom,
             rgba(0,0,0, 0),
             rgba(0,0,0, 100)
-          ),url("<?php echo get_wallpaper(); ?>"), linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4));
+          ),url("<?php  echo get_wallpaper(); ?>"), linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4));
       </style>
       <section class="jumbotron text-center mt-0" id="bing-bg">
         <div class="container" id="cta">
           <h1 style="color:red;">RFI News</h1>
-          <p class="lead text">Newspaper from the data stream of Radio France Internationale (RFI), the popular radio station.
+          <p class="lead text-white">Newspaper from the data stream of Radio France Internationale (RFI), the popular radio station.
             <br/> Made with love <span class="heart">❤</span> by <a href='https://github.com/heronational' target="_blank"> Daniel Uokof </a></p>
           <p>
             <p class="print-title">Journal du <?php echo date("j/m/o");?> </p>
@@ -154,7 +153,7 @@
               color:darkorange;
             }
           </style>
-          <span class="lnr lnr-chevron-down down"></span>
+          <span class="lnr lnr-chevron-down down text-white"></span>
         </div>
       </section>
 
@@ -166,13 +165,17 @@
                 $xml=get_data();
                 foreach($xml->channel->item as $item){
             ?>
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
+            <div class="col-sm-12 col-md-4">
+              <div class="card mb-4 shadow">
                 <?php if($item->source["url"]!='unknown'){?>
                     <img class="bd-placeholder-img card-img-top" src="<?php echo($item->source["url"]); ?>" alt="<?php echo($item->title); ?>">
                 <?php } ?>
                 <div class="card-body">
                   <h5 class="card-title"><?php echo($item->category); ?></h5>
+                  
+                  <div class="card border-1 text-success  shadow  m-2 p-2">
+                    <?php echo($item->title); ?>
+                  </div>
                   <p class="card-text"><?php echo($item->description); ?></p>
                   <small class="text-muted">Date: <?php echo($item->pubDate);?></small>
                   <div class="d-flex justify-content-between align-items-center mt-3">
@@ -213,79 +216,150 @@
       .back-to-top{
         visibility: hidden;
         position: fixed;
-        bottom: 50px;
+        bottom: 65px;
         right: 5px;
         background-color: rgba(255, 0, 0, 0.233);
         padding:15px;
         border-radius: 10%;
         font-weight: bold;
-        transition: 700ms cubic-bezier(0.075, 0.82, 0.165, 1);
+        transition: 700ms linear;
         color:rgb(245, 209, 166);
         font-size: 20px;
       }
       .back-to-top:hover{
-        transition: 700ms cubic-bezier(0.075, 0.82, 0.165, 1);
-        box-shadow: 0px 0px 10px 5px rgba(245, 245, 245, 0.548);
+        transition: 700ms linear;
         background-color: rgba(255, 0, 0, 0.589);
       }
     </style>
-    <span class="lnr lnr-chevron-up back-to-top" href="#"></span>
-
-    <footer class="fixed-bottom: bg-dark text-center text-muted">
-      <div class="container">
-        <p class='pt-2'>Made with love <span class="hearts">❤</span> by  <a href="https://github.com/heronational/">Daniel Uokof.</a> Contact me on <a href="https://t.me/heronational">Telegram</a></p>
-      </div>
+    <span class="lnr lnr-chevron-up back-to-top shadow" href="#"></span>
+      
+    <footer class="position-relative shadow footer mt-auto py-1 bg-dark text-center text-warning">
+        <p class='mt-3'>Made with love <span class="hearts">❤</span> by  <a target="_blank" href="https://github.com/heronational/">Daniel Uokof.</a> Contact me on <a href="https://t.me/heronational">Telegram</a></p>
     </footer>
+    <div
+      id="scrollshow"
+      style="
+        background: rgb(34, 195, 107);
+        background: radial-gradient(
+          circle,
+          rgba(34, 195, 107, 1) 0%,
+          rgba(34, 193, 195, 1) 40%,
+          rgba(117, 183, 191, 1) 52%,
+          rgba(253, 187, 45, 1) 100%
+        );
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        z-index: 2000000;
+        height: 6px;
+      "
+    ></div>
+
     <style>
       @media print {
         .btn,.lead,.back-to-top,.lang, .down{
           display: none;
         }
-        
+        #bing-bg{
+          /*height: 40px!important;*/
+        }
         .print-title{
           display:block;
           color:teal;
         }
       }
+      /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f5cc8e83; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 117, 83, 0.699); 
+  transition: 700ms linear;
+  border-radius: 19px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  transition: 700ms linear;
+  background: rgba(255, 117, 83, 1); 
+}
     </style>
   </body>
   <script src="./assets/dist/js/jquery.js"></script>
   <script>
-    $("#bing-bg").css(
-      {
-        height:screen.height
-      }
-    );
-    $("#cta").offset(
-      {
-        top:(screen.height-$("#cta").height())/2,
-      }
-    )
-    $(".back-to-top").click((e)=>{
-      e.preventDefault();
-      var body = $("html, body");
-      body.stop().animate({scrollTop:0}, 500, 'swing', function() { 
-        
-      });
-    })
-    $(".down").click((e)=>{
-      e.preventDefault();
-      var body = $("html, body");
-      body.stop().animate({scrollTop:screen.height+2+"px"}, 500, 'swing', function() { 
-        
-      });
-    })
 
-    window.addEventListener("scroll", (event) => {
-      if(this.scrollY > screen.height+(screen.height*0.1)){
-        $(".back-to-top").css({
-          visibility: "visible"
-        }).animate(fadeIn,100)
-      }else{
-        $(".back-to-top").css({
-          visibility: "hidden"
-        }).animate(fadeOut,1000)
+      //Scroll percent
+      const percentLabel = document.querySelector("#scrollshow");
+      let docT = document.title;
+      window.addEventListener("scroll", () => {
+        scrollTop = window.scrollY-$(window).height();
+        let docHeight = document.body.scrollHeight;
+        let winHeight = window.innerHeight+$(window).height();
+        let scrollPercent = scrollTop / (docHeight - winHeight);
+        scrollPercentRounded = Math.round(scrollPercent * 100);
+        if (Math.round(scrollPercent * 100) > 100) {
+          scrollPercentRounded = 100;
+        } else {
+          if (Math.round(scrollPercent * 100) < 0) {
+            scrollPercentRounded = 0;
+          }
+        }
+        document.title = docT + " : " + scrollPercentRounded + "% de la lecture";
+        //percentLabel.innerHTML = scrollPercentRounded;
+        document.getElementById("scrollshow").style.width =
+          scrollPercentRounded + "%";
+      });
+
+      $(".down").click((e)=>{
+        e.preventDefault();
+        var body = $("html, body");
+        body.stop().animate({scrollTop: $(window).height()+2+"px"}, 500, 'swing', function() { 
+          
+        });
+      })
+
+      function ctaHeight(){
+        $("#bing-bg").css(
+          {
+            height: $(window).height()
+          }
+        );
+        $("#cta").offset(
+          {
+            top:( $(window).height()-$("#cta").height())/2,
+          }
+        )
       }
-  });
+      
+      ctaHeight()
+      
+      $(".back-to-top").click((e)=>{
+        e.preventDefault();
+        var body = $("html, body");
+        body.stop().animate({scrollTop: $(window).height()}, 500, 'swing', function() { 
+          
+        });
+      })
+
+      addEventListener("resize",ctaHeight());
+      window.addEventListener("scroll", (event) => {
+        if(this.scrollY >  $(window).height()+( $(window).height()*0.1)){
+          $(".back-to-top").css({
+            visibility: "visible"
+          }).animate(fadeIn,100)
+        }else{
+          $(".back-to-top").css({
+            visibility: "hidden"
+          }).animate(fadeOut,1000)
+        }
+      });
+
   </script>
 </html>
