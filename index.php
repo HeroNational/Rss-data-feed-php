@@ -1,4 +1,5 @@
 <?php 
+  session_start();
   include("./controller.php");
   if(!is_connected()) die("Internet connexion failed. For elements to be loaded, you need to have an internet connexion.");  
 ?>
@@ -10,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="Daniel Fokou, Hero National, Hamed Norach, Megali Freshner and Tarkovski Woo">
     <meta name="generator" content="Jekyll v4.1.1">
-    <link rel="shortcut icon" href="https/://avatars.githubusercontent.com/u/52329673?v=4" type="image/x-icon">
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/52329673?v=4" type="image/x-icon">
     <title>News Feed</title>
 
     <link rel="stylesheet" href="./assets/font/style.css">
@@ -78,7 +79,7 @@
             <p class="print-title">Journal du <?php echo date("j/m/o");?> </p>
             <div class="btn btn-group">
               <a href="https://github.com/heronational/Rss-data-feed-php" class="btn btn-info my-2"><span class="lnr lnr-laptop"></span>&nbsp;&nbsp;&nbsp;&nbsp;Suivre le projet</a>
-              <a href="<?php 
+              <a class="url" href="<?php 
               if(isset($_GET["lang"])){
                 if($_GET["lang"]=="fr"){
                   echo "https://www.rfi.fr/fr/rss";
@@ -160,7 +161,7 @@
       <div class="album py-5 bg-light">
         <div class="container">
 
-          <div class="row">
+          <div class="row" id="results">
             <?php 
                 $xml=get_data();
                 foreach($xml->channel->item as $item){
@@ -294,6 +295,28 @@
   </body>
   <script src="./assets/dist/js/jquery.js"></script>
   <script>
+
+      //Document reloder
+/*      setInterval(
+        $.ajax({
+          url: "https://www.google.com",
+          //cache: false
+        })
+        .done(function( html ) {
+          if(html == "a") {
+            $( "#results" ).html( html );
+          }else{
+            alert;
+          }
+        })
+        .progress(
+          $( "#results" ).html($( "#results" ).html()+"")
+        )
+        .fail(
+          alert("Failed to reload the document.")
+        ),
+      100);
+*/
 
       //Scroll percent
       const percentLabel = document.querySelector("#scrollshow");
